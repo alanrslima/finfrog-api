@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { InvalidAttributeError } from "../../error/invalid-attribute-error";
 
 export class Password {
   private hash: string;
@@ -39,7 +40,10 @@ export class Password {
 
   private static checkPolicy(rawPassword: string) {
     if (rawPassword.length < 6) {
-      throw new Error("A senha deve possuir pelo menos 6 dígitos");
+      throw new InvalidAttributeError(
+        "Password",
+        "A senha deve possuir pelo menos 6 dígitos"
+      );
     }
   }
 

@@ -3,5 +3,5 @@ import { adaptRoute } from "../adapter/express-route-adapter";
 import { signUpControllerFactory } from "../factory/controller/sign-up-controller-factory";
 
 export default (router: Router): void => {
-  router.get("/auth/sign-up", adaptRoute(signUpControllerFactory()));
+  router.post("/auth/sign-up", adaptRoute(signUpControllerFactory()));
 };

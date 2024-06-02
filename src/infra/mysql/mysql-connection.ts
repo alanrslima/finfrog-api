@@ -23,12 +23,10 @@ class MysqlDatabase {
   }
 
   async query(props: QueryOptions) {
-    if (this.pool) {
-      const connection = await this.pool.getConnection();
-      const response = await connection.query(props);
-      connection.release();
-      return response;
-    }
+    const connection = await this.pool.getConnection();
+    const [response] = await connection.query(props);
+    connection.release();
+    return response as any[];
   }
 }
 

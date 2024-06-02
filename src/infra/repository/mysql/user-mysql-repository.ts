@@ -18,6 +18,18 @@ export class UserMysqlRepository implements UserRepository {
   }
 
   async getByEmail(email: string): Promise<User | undefined> {
-    throw new Error("Method not implemented");
+    const sql = `SELECT id, name, email, password, salt FROM user WHERE email = ?`;
+    const response = await mysqlDatabase.query({ sql, values: [email] });
+    if (response.length) {
+      const [data] = response;
+      return User.build({
+        email: data.email,
+        id: data.id,
+        name: data.name,
+        password: data.password,
+        salt: data.salt,
+      });
+    }
+    return undefined;
   }
 }

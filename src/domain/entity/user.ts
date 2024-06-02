@@ -1,5 +1,6 @@
 import { Email } from "../value-object/email";
 import { Id } from "../value-object/id";
+import { Name } from "../value-object/name";
 import { Password } from "../value-object/password";
 
 type CreateProps = {
@@ -26,7 +27,7 @@ export class User {
 
   private constructor(props: ConstructorProps) {
     this.id = props.id;
-    this.name = props.name;
+    this.name = new Name(props.name).getValue();
     this.email = new Email(props.email).getValue();
     this.password = props.password;
   }
