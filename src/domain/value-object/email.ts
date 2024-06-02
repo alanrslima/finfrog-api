@@ -11,7 +11,7 @@ export class Email {
   }
 
   private isValid(value: string) {
-    var regex = /\S+@\S+\.\S+/;
+    const regex = /\S+@\S+\.\S+/;
     return regex.test(String(value));
   }
 

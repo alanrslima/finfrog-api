@@ -11,7 +11,7 @@ export class Name {
   }
 
   private isValid(value: string) {
-    var regex = /^[a-zA-Z ]{2,30}$/;
+    const regex = /^[a-zA-Z ]{2,30}$/;
     return regex.test(String(value));
   }
 
