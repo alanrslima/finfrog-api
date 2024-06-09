@@ -1,5 +1,5 @@
-import { User } from "../../../domain/entity/user";
-import { UserMemoryRepository } from "../../../infra/repository/memory/user-memory-repository";
+import { User } from "../../../../domain/entity/user";
+import { UserMemoryRepository } from "../../../../infra/repository/memory/user-memory-repository";
 import { SignUpUseCase } from "../sign-up-use-case";
 
 it("should not sign up if email already exists", async () => {
@@ -7,6 +7,7 @@ it("should not sign up if email already exists", async () => {
     email: "john@email.com",
     name: "john",
     rawPassword: "12345678",
+    role: "user",
   });
   const userMemoryRepository = new UserMemoryRepository([mockUser]);
   const signUpUseCase = new SignUpUseCase(userMemoryRepository);
