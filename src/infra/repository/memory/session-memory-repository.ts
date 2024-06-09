@@ -28,4 +28,8 @@ export class SessionMemoryRepository implements SessionRepository {
     }
     return session;
   }
+
+  async deleteById(id: string): Promise<void> {
+    this.data = this.data.filter((item) => item.getId() !== id);
+  }
 }

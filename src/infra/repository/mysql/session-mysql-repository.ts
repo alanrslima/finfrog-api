@@ -22,6 +22,11 @@ export class SessionMysqlRepository implements SessionRepository {
     await mysqlDatabase.query({ sql, values: [new Date()] });
   }
 
+  async deleteById(id: string): Promise<void> {
+    const sql = `DELETE FROM session WHERE id = ?`;
+    await mysqlDatabase.query({ sql, values: [id] });
+  }
+
   async getByToken(token: string): Promise<Session> {
     const sql = `SELECT id, user_id, token, expires_at FROM session WHERE token = ?`;
     const response = await mysqlDatabase.query({
