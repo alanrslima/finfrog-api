@@ -11,6 +11,9 @@ export class Name {
   }
 
   private isValid(value: string) {
+    if (typeof value !== "string" || !value?.trim()?.length) {
+      return false;
+    }
     const regex = /^[a-zA-Z ]{2,30}$/;
     return regex.test(String(value));
   }

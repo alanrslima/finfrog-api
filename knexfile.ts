@@ -11,6 +11,7 @@ const config: { [key: string]: Knex.Config } = {
       user: env.mysqlUser,
       password: env.mysqlPassword,
       database: env.mysqlDatabase,
+      port: env.mysqlPort,
     },
     migrations: {
       directory: "migrations",
@@ -24,6 +25,7 @@ const config: { [key: string]: Knex.Config } = {
       user: env.mysqlUser,
       password: env.mysqlPassword,
       database: env.mysqlDatabase,
+      port: env.mysqlPort,
     },
     migrations: {
       directory: "migrations",
@@ -37,6 +39,7 @@ const config: { [key: string]: Knex.Config } = {
       user: env.mysqlUser,
       password: env.mysqlPassword,
       database: env.mysqlDatabase,
+      port: env.mysqlPort,
     },
     migrations: {
       directory: "migrations",

@@ -22,7 +22,7 @@ export class CanMiddleware implements Middleware {
     if (this.canAccess(user?.permissions)) {
       return ok({});
     } else {
-      throw new ForbiddenError();
+      throw new ForbiddenError("O usuário não possui permissões suficientes.");
     }
   }
 }

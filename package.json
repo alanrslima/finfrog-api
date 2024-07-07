@@ -9,11 +9,13 @@
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "test:watch": "jest --watch-all",
+    "test:coverage": "jest --coverage",
     "build": "tsc -p tsconfig.json",
     "migration:create": "knex migrate:make $npm_config_name -x ts",
     "migration:run": "knex migrate:latest",
     "migration:list": "knex migrate:list",
     "migration:rollback": "knex migrate:rollback --all",
+    "migration:down": "knex migrate:down",
     "prepare": "husky"
   },
   "keywords": [],
