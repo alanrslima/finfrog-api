@@ -15,6 +15,20 @@ export class CategoryMemoryRepository implements CategoryRepository {
     return category;
   }
 
+  async update(category: Category): Promise<void> {
+    this.data = this.data.filter((item) =>
+      item.getId() === category.getId() ? category : item
+    );
+  }
+
+  async delete(category: Category): Promise<void> {
+    this.data = this.data.filter((item) => item.getId() !== category.getId());
+  }
+
+  async create(category: Category): Promise<void> {
+    this.data.push(category);
+  }
+
   getData() {
     return this.data;
   }

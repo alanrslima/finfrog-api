@@ -1,4 +1,5 @@
 import { Id } from "../value-object/id";
+import { Value } from "../value-object/value";
 
 type CreateProps = {
   name: string;
@@ -17,7 +18,7 @@ type BuildProps = CreateProps & {
 export class Transaction {
   private id: string;
   private name: string;
-  private value: number;
+  private value: Value;
   private date: Date;
   private categoryId?: string;
   private accountId: string;
@@ -27,7 +28,7 @@ export class Transaction {
   private constructor(props: BuildProps) {
     this.id = props.id;
     this.name = props.name;
-    this.value = props.value;
+    this.value = new Value(props.value);
     this.date = new Date(props.date);
     this.categoryId = props.categoryId;
     this.notes = props.notes;
@@ -52,7 +53,7 @@ export class Transaction {
   }
 
   getValue() {
-    return this.value;
+    return this.value.getValue();
   }
 
   getDate() {

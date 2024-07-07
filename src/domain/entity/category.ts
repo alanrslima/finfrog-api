@@ -1,5 +1,4 @@
 import { Id } from "../value-object/id";
-import { Name } from "../value-object/name";
 
 type CreateProps = {
   name: string;
@@ -12,12 +11,12 @@ type BuildProps = CreateProps & {
 
 export class Category {
   private id: string;
-  private name: Name;
+  private name: string;
   private userId: string;
 
   private constructor(props: BuildProps) {
     this.id = props.id;
-    this.name = new Name(props.name);
+    this.name = props.name;
     this.userId = props.userId;
   }
 
@@ -34,10 +33,14 @@ export class Category {
   }
 
   getName() {
-    return this.name.getValue();
+    return this.name;
   }
 
   getUserId() {
     return this.userId;
+  }
+
+  setName(name: string) {
+    this.name = name;
   }
 }

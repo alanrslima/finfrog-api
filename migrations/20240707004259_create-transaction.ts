@@ -24,7 +24,7 @@ export async function up(knex: Knex): Promise<void> {
     table
       .foreign("category_id")
       .references("id")
-      .inTable("account")
+      .inTable("category")
       .onDelete("SET NULL");
   });
 }

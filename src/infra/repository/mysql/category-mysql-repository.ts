@@ -13,4 +13,25 @@ export class CategoryMysqlRepository implements CategoryRepository {
     if (!data) throw new ResourceNotFoundError();
     return Category.build(data);
   }
+
+  async update(category: Category): Promise<void> {
+    const sql = `UPDATE category SET name = ? WHERE id = ?`;
+    await mysqlDatabase.query({
+      sql,
+      values: [category.getName(), category.getId()],
+    });
+  }
+
+  async delete(category: Category): Promise<void> {
+    const sql = `DELETE FROM category WHERE id = ?`;
+    await mysqlDatabase.query({ sql, values: [category.getId()] });
+  }
+
+  async create(category: Category): Promise<void> {
+    const sql = `INSERT INTO category (id, name, user_id) VALUES (?,?,?)`;
+    await mysqlDatabase.query({
+      sql,
+      values: [category.getId(), category.getName(), category.getUserId()],
+    });
+  }
 }
