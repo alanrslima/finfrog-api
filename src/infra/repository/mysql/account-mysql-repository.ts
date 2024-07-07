@@ -17,6 +17,14 @@ export class AccountMysqlRepository implements AccountRepository {
     });
   }
 
+  async update(account: Account): Promise<void> {
+    const sql = `UPDATE account SET name = ?, initial_value = ?  WHERE id = ?`;
+    await mysqlDatabase.query({
+      sql,
+      values: [account.getName(), account.getInitialValue(), account.getId()],
+    });
+  }
+
   async delete(account: Account): Promise<void> {
     const sql = `DELETE FROM account WHERE id = ?`;
     await mysqlDatabase.query({ sql, values: [account.getId()] });

@@ -1,5 +1,6 @@
 import { Id } from "../value-object/id";
 import { Name } from "../value-object/name";
+import { Value } from "../value-object/value";
 
 type CreateProps = {
   name: string;
@@ -14,13 +15,13 @@ type BuildProps = CreateProps & {
 export class Account {
   private id: string;
   private name: Name;
-  private initialValue: number;
+  private initialValue: Value;
   private userId: string;
 
   private constructor(props: BuildProps) {
     this.id = props.id;
     this.name = new Name(props.name);
-    this.initialValue = props.initialValue || 0;
+    this.initialValue = new Value(props.initialValue || 0);
     this.userId = props.userId;
   }
 
@@ -36,15 +37,23 @@ export class Account {
     return this.id;
   }
 
-  getName() {
+  getName(): string {
     return this.name.getValue();
   }
 
-  getUserId() {
+  setName(name: string): void {
+    this.name = new Name(name);
+  }
+
+  getUserId(): string {
     return this.userId;
   }
 
-  getInitialValue() {
-    return this.initialValue;
+  getInitialValue(): number {
+    return this.initialValue.getValue();
+  }
+
+  setInitialValue(initialValue: number) {
+    this.initialValue = new Value(initialValue);
   }
 }

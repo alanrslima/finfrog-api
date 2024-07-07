@@ -13,6 +13,12 @@ export class AccountMemoryRepository implements AccountRepository {
     this.data.push(account);
   }
 
+  async update(account: Account): Promise<void> {
+    this.data = this.data.map((item) =>
+      item.getId() === account.getId() ? account : item
+    );
+  }
+
   async delete(account: Account): Promise<void> {
     this.data = this.data.filter((item) => item.getId() !== account.getId());
   }
