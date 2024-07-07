@@ -26,6 +26,23 @@ export class TransactionMysqlRepository implements TransactionRepository {
     await mysqlDatabase.query({ sql, values: [transaction.getId()] });
   }
 
+  async update(transaction: Transaction): Promise<void> {
+    const sql = `UPDATE transaction SET name = ?, value = ?, date = ?, notes = ?, user_id = ?, account_id = ?, category_id = ? WHERE id = ?`;
+    await mysqlDatabase.query({
+      sql,
+      values: [
+        transaction.getName(),
+        transaction.getValue(),
+        transaction.getDate(),
+        transaction.getNotes(),
+        transaction.getUserId(),
+        transaction.getAccountId(),
+        transaction.getCategoryId(),
+        transaction.getId(),
+      ],
+    });
+  }
+
   async getById(id: string): Promise<Transaction> {
     const sql = `SELECT id, name, value, date, notes, user_id, account_id, category_id FROM transaction WHERE id = ?`;
     const [data] = await mysqlDatabase.query({ sql, values: [id] });

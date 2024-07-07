@@ -13,6 +13,10 @@ export class AccountMemoryRepository implements AccountRepository {
     this.data.push(account);
   }
 
+  async delete(account: Account): Promise<void> {
+    this.data = this.data.filter((item) => item.getId() !== account.getId());
+  }
+
   async getById(id: string): Promise<Account> {
     const account = this.data.find((account) => account.getId() === id);
     if (!account) throw new ResourceNotFoundError();

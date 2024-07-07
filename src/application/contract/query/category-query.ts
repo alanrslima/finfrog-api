@@ -7,6 +7,9 @@ export type ListCategoryInput = {
 };
 
 export type ListCategoryOutput = {
-  id: string;
-  name: string;
-}[];
+  pages: number;
+  data: {
+    id: string;
+    name: string;
+  }[];
+};

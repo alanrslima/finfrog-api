@@ -7,7 +7,6 @@ export type ListAccountInput = {
 };
 
 export type ListAccountOutput = {
-  id: string;
-  name: string;
-  initialValue: string;
-}[];
+  pages: number;
+  data: { id: string; name: string; initialValue: string }[];
+};

@@ -13,6 +13,12 @@ export class TransactionMemoryRepository implements TransactionRepository {
     this.data.push(account);
   }
 
+  async update(transaction: Transaction): Promise<void> {
+    this.data = this.data.map((item) =>
+      item.getId() === transaction.getId() ? transaction : item
+    );
+  }
+
   async getById(id: string): Promise<Transaction> {
     const transaction = this.data.find(
       (transaction) => transaction.getId() === id
